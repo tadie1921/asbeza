@@ -5,6 +5,7 @@ import Order from "./Order";
 import Payment from "./Payment";
 import { fetchItems } from "../redux/itemSlice";
 import { useDispatch, useSelector } from "react-redux";
+import Checkout from "./checkout";
 
 export default function Main() {
 
@@ -24,6 +25,7 @@ export default function Main() {
         <Route path='/home' element={<Home />}/>
         <Route path='/order' element={<Order />} />
         <Route path='/payment' element={<Payment />} />
+        <Route path='/checkout' element={<Checkout />} />
         <Route path="*" element={
             <Navigate to='/home' replace/>
         } />

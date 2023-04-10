@@ -47,5 +47,5 @@ export const ITEMS =
         counter: 0,
         image: 'img/Popcorn_148.png',
         description: 'Lights, camera, corn'
-    }
+    },
 ]

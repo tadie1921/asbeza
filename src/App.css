@@ -135,7 +135,7 @@ body.order-mode .cafe-items {
 .cafe-item-price:before {
   display: inline-block;
   vertical-align: top;
-  content: '';
+  /*content: ' '; */
   width: 2px;
   height: 2px;
   border-radius: 2px;
@@ -298,7 +298,7 @@ button,
   justify-content: center;
   align-items: center;
   border-radius: 0;
-  background-color:   #31b545; /*#e64d44; */
+  background-color: rgb(235, 229, 229); /*#e64d44; */
   box-shadow: 0 var(--status-height)  #31b545;/* #e64d44; */
   color: #fff;
   height: var(--status-height);
@@ -331,9 +331,9 @@ body.order-mode .cafe-order-overview {
   align-items: center;
 }
 .cafe-order-header {
-  font-size: 17px;
+  font-size: 14px;
   line-height: 21px;
-  text-transform: uppercase;
+  /*text-transform: uppercase; */
   flex-grow: 1;
   padding: 0;
   margin: 0;
