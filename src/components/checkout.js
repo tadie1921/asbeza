@@ -1,32 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
+import Header from "./HeaderComponent";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { resetCounter } from "../redux/itemSlice";
+import Footer from "./FooterComponent";
 
 export default function Checkout() {
+
+    const items = useState();
+    const dispatch = useDispatch();
+
+    const navigate = useNavigate();
+    const handle_finish = () =>{
+        //set redux state to normal from server
+        //temp
+        dispatch(resetCounter());
+        navigate('/home');
+    }
 
     return(
 
         <div className="row">
             <div className="offset-md-2 col-12 col-md-8" style={{borderBottom: '4px solid #ebedf0'}}>
-                <div className="cafe-order-header-wrap row">
-                    <h2 className="cafe-order-header col-12">Orders Summery</h2>
-                    <div className="offset-1 row">
-                        <div className="col-3 col-md-5">
-                            <img height={40} width={40} src="img/Burger_148.png"/>    
-                        </div>
-                        <div className="col-8 col-md-5 mt-1">
-                            <p style={{fontSize: 16}}>     
-                                <span style={{fontWeight: 'bold'}}>Birrama</span><br/> 
-                                <span style={{color:'grey', fontStyle: 'italic', fontSize: 16}}>
-                                    Empowering the Consumer
-                                </span>
-                            </p>
-                        </div>
-                       
-                    </div>
-                </div>
-        </div>
-            <div className="row m-5">
-                <p className="col-10">Thank you message in Amharic and the photo of that girl</p>
+                <Header component={'checkout'} title={'Checkout'}/>                
             </div>
+            
+                <div className="row mt-4">
+                    
+                    <div className="col-12 d-flex justify-content-center">
+                        <h4 style={{color: 'orange'}}>Thank you for choosing Birrama.</h4>
+                    </div>
+                    <div className="col-12 d-flex justify-content-center">
+                        <div className=" mx-4"
+                            style={{textAlign: 'center',padding: '10px', margin: '20px' }}>
+                            <h6 style={{fontSize:18, fontFamily: 'serif'}}>
+                                Our shop will be available for ordering on Monday, Wednesday, 
+                                and Friday. Feel free to comback on this days for ordering.
+                            </h6>
+                        </div>
+                    </div>                
+                </div>
+            
+            <div className="d-flex justify-content-center">
+                <img src="img/Burger_148.png"/>
+            </div>
+            <Footer component={'checkout'} btn_name="Finish" btn_func={handle_finish}/>  
         </div>
     )
 }

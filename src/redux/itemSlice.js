@@ -25,6 +25,10 @@ const itemSlice = createSlice({
             } else{
                 console.log('no itme found')
             }
+         },
+         //temp reset counter
+         resetCounter(state,action){
+            state.items.map(item => item.counter = 0);
          }
     },
     extraReducers(builder) {
@@ -49,6 +53,6 @@ export const fetchItems = createAsyncThunk('items/fetchItems', ()=>{
     return ITEMS;
 });
 
-export const { counterChanged } = itemSlice.actions;
+export const { counterChanged, resetCounter } = itemSlice.actions;
 
 export default itemSlice.reducer;

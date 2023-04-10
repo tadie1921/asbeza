@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import Header from "./HeaderComponent";
+import Footer from "./FooterComponent";
+import PaymentOption from "./PaymentOption";
 
 export default function Payment (props) {
 
     const location = useLocation();
-
     
     console.log(location.state.orders);
 
@@ -17,8 +19,7 @@ export default function Payment (props) {
         } else if(document.getElementById('online').checked){
             const value = document.getElementById('online').value;
             setPaymentOption(value);
-        }
-
+        }        
     }
 
     const handle_done = () => {
@@ -33,38 +34,18 @@ export default function Payment (props) {
     return(
         <>
         <div className="row">
-            <div className="offset-md-2 col-12 col-md-8" style={{borderBottom: '4px solid #ebedf0'}}>
-                <div className="cafe-order-header-wrap row">
-                    <h2 className="cafe-order-header col-12">Checkout & Payment</h2>
-                    <div className="offset-1 row">
-                        <div className="col-3 col-md-5">
-                            <img height={40} width={40} src="img/Burger_148.png"/>    
-                        </div>
-                        <div className="col-8 col-md-5 mt-1">
-                            <p style={{fontSize: 16}}> 
-                                <span style={{fontWeight: 'bold', textDecoration: 'underline'}}>
-                                    Order #1233456543222</span><br/>
-                                <span style={{fontWeight: 'bold'}}>Birrama</span><br/> 
-                                <span style={{color:'grey', fontStyle: 'italic', fontSize: 14}}>
-                                    Empowering the Consumer
-                                </span>
-                            </p>
-                        </div>
-                       
-                    </div>
-                </div>
-            </div>
+            <Header component={'payment'} title={'Checkout & Payment'} order_num={11223333333}/>
             <div className="cafe-items row mt-3">
                 <div className="col-6">
-                    <p style={{fontSize: 14, lineHeight:1}}>
+                    <p style={{fontSize: 13, lineHeight:1}}>
                         Please enter your 12 Digit
                         Member Id (0000-0000-0000)
                     </p>
                 </div>
                 <div className="col-5 mt-1 me-1" >
                     <input type="text" size={16} 
-                        style={{height: 22, fontSize: 16, position: 'relative', top:'-2px', left:'-12px'}}/>
-                    <p style={{fontSize:5}}>
+                        style={{height: 26, fontSize: 16, position: 'relative', top:'-2px', left:'-12px'}}/>
+                    <p style={{fontSize:12}}>
                         <span style={{color: 'green'}}>Member id is Correct</span>
                     </p> 
                 </div>
@@ -88,8 +69,8 @@ export default function Payment (props) {
                     </form>                    
                 </div>
                 {paymentOption !== '' && paymentOption === 'cash' &&
-                    (<div className="offset-1 mt-2">
-                        <div 
+                    <div className="offset-1 mt-2">
+                        <div className="mx-5"
                             style={{textAlign: 'center',padding: '10px', margin: '20px',
                                         border: '2px solid black', background:'#badcf1'}}>
                             <p style={{fontSize:14}}>
@@ -99,39 +80,14 @@ export default function Payment (props) {
                                 payment in cash.
                             </p>
                         </div>
-                    </div>)
+                    </div>
                 } 
                 {paymentOption !== '' && paymentOption === 'online' &&
                     (<div className="offset-2 mt-2">
                         <p style={{fontSize: 14}}>We accept payments via</p>
-                        <div className="row">
-                            <div className="col-2 ">
-                                <img height={40} width={40} src="img/Burger_148.png"/>    
-                            </div>
-                            <div className="col-8 ">
-                                <p style={{fontSize: 14}}> 
-                                    <span>Our account at &nbsp; 
-                                        <span style={{color: '#0891ec', textDecoration: 'underline'}}>
-                                            TeleBirr </span> is
-                                    </span><br/>            
-                                    <span>12345670</span>
-                                </p>
-                            </div>                                
-                        </div>
-                        <div className="row">
-                            <div className="col-2 ">
-                                    <img height={40} width={40} src="img/Burger_148.png"/>    
-                                </div>
-                                <div className="col-8 ">
-                                    <p style={{fontSize: 14}}> 
-                                        <span>Our account at &nbsp; 
-                                            <span style={{color: '#ddbd56', textDecoration: 'underline'}}>
-                                                CBE </span> is
-                                        </span><br/>            
-                                        <span>12345670</span>
-                                    </p>
-                                </div>
-                        </div>
+                        
+                        <PaymentOption />
+
                         <div className="row">
                             <div className="col-7">
                                 <p style={{fontSize: 14, lineHeight: 1, textAlign: 'center'}}>
@@ -141,26 +97,16 @@ export default function Payment (props) {
                             </div>
                             <div className="col-4 mt-1 me-1" >
                                 <input type="text" size={16} 
-                                    style={{height: 22, fontSize: 12, position: 'relative', top:'-2px', left:'-12px'}}/>         
+                                    style={{height: 28, fontSize: 16, position: 'relative', top:'-2px', left:'-12px'}}/>         
                             </div>
                         </div>
-
                     </div>)
                 }           
 
             </div>
        </div>
-       <div className="row cafe-status-wrap">
-            <div  className="cafe-status shown d-flex justify-content-end">
-                <span className="cafe-order-edit mx-3"
-                        onClick={() => handle_cancelBtn()}  >Cancel
-                </span>                                 
-                <button className="me-3 my-3" onClick={()=>handle_done()}
-                        style={{backgroundColor:'#0891ec'}} >
-                    Done
-                </button>                                                                    
-            </div>
-        </div>   
+       <Footer  component='payment' btn_name='Done' btn_func={handle_done} 
+                    cancel_func={handle_cancelBtn}/>  
    </>
     );
     /* 

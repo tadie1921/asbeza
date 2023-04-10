@@ -1,6 +1,8 @@
 import React, { useRef } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Headers from "./HeaderComponent";
+import Footer from "./FooterComponent";
 
 
 export default function Order() {
@@ -55,59 +57,34 @@ export default function Order() {
 
     return(
        <div className="row">
-        <div style={{borderBottom: '4px solid #ebedf0'}}>
-            <div className="cafe-order-header-wrap row">
-                <h2 className="cafe-order-header col-12">Orders Summery</h2>
-                <div className="offset-1 row">
-                    <div className="col-3 col-md-5">
-                        <img height={40} width={40} src="img/Burger_148.png"/>    
-                    </div>
-                    <div className="col-8 col-md-5 mt-1">
-                        <p style={{fontSize: 16}}>     
-                            <span style={{fontWeight: 'bold'}}>Birrama</span><br/> 
-                            <span style={{color:'grey', fontStyle: 'italic', fontSize: 14}}>
-                                Empowering the Consumer
+            <Headers component={'Order'} title={'Order Summery'}/>
+            <div className="cafe-page cafe-order-overview">
+                    <div className="cafe-block">
+                        <div className="cafe-order-header-wrap">
+                            <h2 className="cafe-order-header">Your Order</h2>
+                            <span className="cafe-order-edit"
+                                onClick={() =>handle_editBtn()}  >Edit
                             </span>
-                        </p>
+                        </div>
+                        <div className="cafe-order-items">
+                            {itemsList}
+                        </div>
                     </div>
-                
-                </div>
+                    <div className="cafe-text-field-wrap">
+                        <textarea id="commentText" className="cafe-text-field cafe-block" rows="1"
+                                placeholder="Add comment…"></textarea>
+                        <div className="cafe-text-field-hint">
+                            Any special requests, details, final wishes etc.
+                        </div>
+                    </div>
             </div>
-        </div>
-        <div className="cafe-page cafe-order-overview">
-                <div className="cafe-block">
-                    <div className="cafe-order-header-wrap">
-                        <h2 className="cafe-order-header">Your Order</h2>
-                        <span className="cafe-order-edit"
-                            onClick={() =>handle_editBtn()}  >Edit
-                        </span>
-                    </div>
-                    <div className="cafe-order-items">
-                        {itemsList}
-                    </div>
-                </div>
-                <div className="cafe-text-field-wrap">
-                    <textarea id="commentText" className="cafe-text-field cafe-block" rows="1"
-                            placeholder="Add comment…"></textarea>
-                    <div className="cafe-text-field-hint">
-                        Any special requests, details, final wishes etc.
-                    </div>
-                </div>
-        </div>
-        <div className="offset-1 my-3">
-            <p style={{fontSize: 18}}>Total Fee &nbsp;
-            <span style={{color: '#0891ec', textDecoration: 'underline'}}>
-                {totalPrice.toFixed(2)}
-                </span></p>
-        </div>
-        <div className="cafe-status-wrap">
-                <div  className="cafe-status shown d-flex justify-content-end">                                 
-                    <button className="me-3" onClick={handle_payBtn} 
-                            style={{backgroundColor:'#0891ec'}} >
-                        Next
-                    </button>                                                                    
-                </div>
-            </div>   
+            <div className="offset-1 my-3">
+                <p style={{fontSize: 18}}>Total Fee &nbsp;
+                <span style={{color: '#0891ec', textDecoration: 'underline'}}>
+                    {totalPrice.toFixed(2)}
+                    </span></p>
+            </div>
+            <Footer component={'order'} btn_func={handle_payBtn} btn_name='Next'/>  
         </div>
     );
 }

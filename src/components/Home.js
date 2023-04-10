@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Loading } from "./LoadingComponent";
 import {counterChanged} from '../redux/itemSlice';
+import Headers from "./HeaderComponent";
+import Footer from "./FooterComponent";
 
 var orderCount = 0;
 
@@ -104,39 +106,13 @@ export default function Home() {
        
         return(
             <div className="row">
-                <div className="offset-md-2 col-12 col-md-8" style={{marginBottom: 3, borderBottom: '4px solid #ebedf0'}}>
-                    <div className="cafe-order-header-wrap row">
-                        <h2 className="cafe-order-header col-12">Orders</h2>
-                        <div className="offset-1 row">
-                            <div className="col-3 col-md-5">
-                                <img height={40} width={40} src="img/Burger_148.png"/>    
-                            </div>
-                            <div className="col-8 col-md-5 mt-1">
-                                <p style={{fontSize: 16}}>     
-                                    <span style={{fontWeight: 'bold'}}>Birrama</span><br/> 
-                                    <span style={{color:'grey', fontStyle: 'italic', fontSize: 16}}>
-                                        Empowering the Consumer
-                                    </span>
-                                </p>
-                            </div>
-                        
-                        </div>
-                    </div>
-                </div>
+                <Headers component={'Home'} title={'Orders'}/>
                 <div className="cafe-page cafe-items col-12 mb-5"> 
                     {Itmes}                             
                 </div>
-                <div className="row cafe-status-wrap col-12">
-                    { orderCount > 0 &&(
-                    <div  className="cafe-status shown d-flex justify-content-end">                                 
-                        <button className="me-3" onClick={handle_viewOrder} 
-                                style={{backgroundColor:'#0891ec'}} >
-                            Next
-                        </button>                                                                    
-                    </div>
-                    )
-                    }
-                </div>        
+                {orderCount > 0 && (
+                    <Footer component={'home'} btn_func={handle_viewOrder} btn_name={'Next'}/>
+                )}    
             </div>
                     
         );
