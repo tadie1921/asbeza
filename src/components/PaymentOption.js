@@ -22,8 +22,8 @@ export default function PaymentOption() {
     };
     return(
         <>
-        <Options name='TeleBirr' color='#0891ec' icon={img/Burger_148.png}/>
-        <Options name='CBE' color='#ddbd56' icon={img/Burger_148.png}/>
+        <Options name='TeleBirr' color='#0891ec' icon={"img/Burger_148.png"}/>
+        <Options name='CBE' color='#ddbd56' icon={"img/Burger_148.png"}/>
         </>        
     )
 }

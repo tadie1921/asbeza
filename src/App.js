@@ -12,9 +12,7 @@ function App() {
           <Main />
         </div>
       </BrowserRouter>
-    </Provider>
-    
-     
+    </Provider>         
   );
 }
 

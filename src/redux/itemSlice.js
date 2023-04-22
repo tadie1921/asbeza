@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { ITEMS } from "../sampleData/items";
+const baseUrl = "http://localhost:3000";
+
 
 const initialState = {
-    items: ITEMS,  // []
-    status: 'succeeded', // 'idle'
+    items: [],  // []
+    status: 'idle', // 'idle'
     error: null
 }
 
@@ -38,8 +39,9 @@ const itemSlice = createSlice({
             })
             .addCase(fetchItems.fulfilled, (state, action) => {
                 state.status = 'succeeded'
+                action.payload.data.map(obj => obj.counter = 0);
                 // add any fetched posts to the array
-                state.items = state.items.concat(action.payload);
+                state.items = action.payload.data;
             })
             .addCase(fetchItems.rejected, (state, action)=>{
                 state.status = 'failed'
@@ -49,8 +51,10 @@ const itemSlice = createSlice({
     }
 });
 
-export const fetchItems = createAsyncThunk('items/fetchItems', ()=>{
-    return ITEMS;
+export const fetchItems = createAsyncThunk('items/fetchItems', async()=>{
+    const response = await fetch(baseUrl + '/items');
+    
+    return response.json();
 });
 
 export const { counterChanged, resetCounter } = itemSlice.actions;

@@ -1,20 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "./HeaderComponent";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { resetCounter } from "../redux/itemSlice";
 import Footer from "./FooterComponent";
+import { fetchItems } from "../redux/itemSlice";
 
 export default function Checkout() {
 
-    const items = useState();
     const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch(fetchItems());
+    },[]);
+    
 
     const navigate = useNavigate();
     const handle_finish = () =>{
-        //set redux state to normal from server
-        //temp
-        dispatch(resetCounter());
+        //dispatch(resetCounter());
         navigate('/home');
     }
 

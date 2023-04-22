@@ -4,11 +4,12 @@ import { useNavigate } from "react-router-dom";
 import Headers from "./HeaderComponent";
 import Footer from "./FooterComponent";
 
-
 export default function Order() {
     
     var totalPrice = 0.0;
-    const orders = {items:[], comment: '', totalPrice: ''};
+    const orders = {orderNum: '', memberId: '',paymentOption: '', transactionNum: '', 
+            datetime: '', paymentStatus: 0, deliveryStatus: 0, remark: '',
+            comment: '', totalPrice: '', items:[]};
 
     const items = useSelector(state => state.items.items);
 
@@ -19,9 +20,9 @@ export default function Order() {
 
     const handle_payBtn = () => {
         const comment =  document.querySelector('#commentText').value;
+        orders.orderNum = Math.floor(Math.random() * 1000000000);
         orders.comment = comment;
         orders.totalPrice = totalPrice;
-        console.log(orders)
         navigate('/payment',{state: {orders: orders}});
     }
 

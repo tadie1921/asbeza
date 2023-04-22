@@ -11,14 +11,14 @@ export default function Main() {
 
     const dispatch = useDispatch();
     const itemStatus = useSelector(state => state.items.status);
-    /*
+    
+    
     useEffect(()=>{
       if(itemStatus === 'idle') {
         dispatch(fetchItems())
-        console.log(itemStatus);
       }
-    },[itemStatus, dispatch])
-    */
+    },[itemStatus])
+  
 
     return(
       <Routes>

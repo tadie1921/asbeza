@@ -1,18 +1,55 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Header from "./HeaderComponent";
 import Footer from "./FooterComponent";
 import PaymentOption from "./PaymentOption";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faCheckCircle, faCircleXmark} from '@fortawesome/free-solid-svg-icons';
 
-export default function Payment (props) {
+const baseUrl = "http://localhost:3000";
 
+export default function Payment () {
+
+    const navigate = useNavigate();
     const location = useLocation();
-    
-    console.log(location.state.orders);
+    const orders = location.state.orders;
 
     const [paymentOption, setPaymentOption] = useState('');
+    const [memberIdStatus, setMemberIdStatus] = useState('');
+    const [transactionStatus, setTranactionStatus] = useState('');
+
+    orders.paymentOption = paymentOption;
+
+    const handle_memberIdField = () => {
+        const memberId = document.querySelector('#memberId').value;
+
+        if(memberId.length == 13 || memberId.length == 0){
+            setMemberIdStatus('incorrect')
+        }
+        if(memberId.length === 14){
+            fetch(baseUrl + `/members/${memberId}`)
+            .then(response => response.json())
+            .then(response => {
+                if(response.length){
+                    setMemberIdStatus('correct')
+                    orders.memberId = memberId; 
+                } else {
+                    setMemberIdStatus('incorrect')
+                }
+                })
+            .catch(err => console.log(err))
+        }
+    }
+    const handle_meberIdFocus = () => {
+        if(memberIdStatus !== 'correct'){
+            setMemberIdStatus('incorrect')
+        }
+    }
 
     const handle_paymentOption = () => {
+        if(memberIdStatus !== 'correct'){
+            setMemberIdStatus('incorrect')
+        }
         if(document.getElementById('cash').checked){
             const value = document.getElementById('cash').value;
             setPaymentOption(value);
@@ -21,12 +58,58 @@ export default function Payment (props) {
             setPaymentOption(value);
         }        
     }
-
-    const handle_done = () => {
-        navigate('/checkout');
+    const handle_transactionFocus = () => {
+        if(transactionStatus !== 'correct'){
+            setTranactionStatus('incorrect');
+        }
+    }
+    const handle_transaction = () =>{
+        const value = document.querySelector('#transactionNum').value;
+        if(value.length === 0 || value.length === 4) {
+            setTranactionStatus('incorrect');
+        }
+        if(value.length > 4) {
+            setTranactionStatus('correct');
+            orders.transactionNum = value;
+        }
     }
 
-    const navigate = useNavigate();
+    const handle_done = () => {
+        if(memberIdStatus !== 'correct'){
+            setMemberIdStatus('incorrect')
+            return;
+        }
+        if(paymentOption === 'online' && transactionStatus !== 'correct') {
+            setTranactionStatus('incorrect')
+            return;
+        }
+        
+        orders.datetime = new Date().toISOString().slice(0, 19).replace('T', ' ');
+        console.log(orders); 
+        const orderList = [];
+        //send the order  //1234-5678-9123
+        orders.items.map(item => {
+            const order = {...orders, items: item.id, count: item.count} 
+            orderList.push(order);          
+        });
+       
+        const myOrderList = JSON.stringify(orderList);
+        fetch(baseUrl + '/orders', {
+            method: "POST",
+            body: JSON.stringify({order: myOrderList}),
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            credentials: 'same-origin'
+        })
+        .then(response => {
+            console.log(response.json())
+            navigate('/checkout')
+        })
+        .catch(err => console.log(err))
+    
+    }
+
     const handle_cancelBtn = () => {
         navigate('/order');
     }
@@ -34,7 +117,8 @@ export default function Payment (props) {
     return(
         <>
         <div className="row">
-            <Header component={'payment'} title={'Checkout & Payment'} order_num={11223333333}/>
+            <Header component={'payment'} title={'Checkout & Payment'} 
+                        order_num={orders.orderNum}/>
             <div className="cafe-items row mt-3">
                 <div className="col-6">
                     <p style={{fontSize: 13, lineHeight:1}}>
@@ -43,10 +127,25 @@ export default function Payment (props) {
                     </p>
                 </div>
                 <div className="col-5 mt-1 me-1" >
-                    <input type="text" size={16} 
-                        style={{height: 26, fontSize: 16, position: 'relative', top:'-2px', left:'-12px'}}/>
+                    <input 
+                        id="memberId"
+                        onFocus={()=>handle_meberIdFocus()}
+                        onChange={()=> handle_memberIdField()}
+                        type="text" size={12} maxLength={14}
+                        style={{height: 28, fontSize: 16, position: 'relative', top:'-2px', left:'-12px'}}/>
                     <p style={{fontSize:12}}>
-                        <span style={{color: 'green'}}>Member id is Correct</span>
+                        {memberIdStatus === 'incorrect' &&
+                        <span style={{color: 'red'}}>
+                          <FontAwesomeIcon icon={faCircleXmark} />&nbsp;
+                           Member id is incorrect
+                        </span>
+                        }
+                        {memberIdStatus === 'correct' &&
+                        <span style={{color: 'green'}}>
+                            <FontAwesomeIcon icon={faCheckCircle} />&nbsp;
+                             Member id is correct
+                        </span>
+                        }   
                     </p> 
                 </div>
                 <div className="col-12">
@@ -61,14 +160,16 @@ export default function Payment (props) {
                     <form id="payment-option" onChange={()=>handle_paymentOption()}>
                         <span style={{fontSize: 14}}>Choose your payment option below</span>
                         <div className="offset-1">
-                            <input type="radio" id="cash" name="payment_option" value="cash"/>&nbsp;
+                            <input type="radio" id="cash" name="payment_option" 
+                                value="cash" />&nbsp;
                             <label><span style={{fontSize:14}}>Cash on Delivery</span></label><br/>
                             <input type="radio" id="online" name="payment_option" value="online" />&nbsp;
                             <label><span style={{fontSize:14}}>Online Payment</span></label>
                             </div>
                     </form>                    
                 </div>
-                {paymentOption !== '' && paymentOption === 'cash' &&
+                {memberIdStatus === 'correct' && paymentOption !== '' 
+                        && paymentOption === 'cash' &&
                     <div className="offset-1 mt-2">
                         <div className="mx-5"
                             style={{textAlign: 'center',padding: '10px', margin: '20px',
@@ -82,7 +183,8 @@ export default function Payment (props) {
                         </div>
                     </div>
                 } 
-                {paymentOption !== '' && paymentOption === 'online' &&
+                {memberIdStatus === 'correct'&& paymentOption !== '' 
+                        && paymentOption === 'online' &&
                     (<div className="offset-2 mt-2">
                         <p style={{fontSize: 14}}>We accept payments via</p>
                         
@@ -96,8 +198,19 @@ export default function Payment (props) {
                                 </p>
                             </div>
                             <div className="col-4 mt-1 me-1" >
-                                <input type="text" size={16} 
-                                    style={{height: 28, fontSize: 16, position: 'relative', top:'-2px', left:'-12px'}}/>         
+                                <input
+                                    id="transactionNum"
+                                    onChange={()=>handle_transaction()} 
+                                    onFocus={()=> handle_transactionFocus()}
+                                    type="text" size={16} 
+                                    style={{height: 28, fontSize: 16, position: 'relative', top:'-2px', left:'-12px'}}
+                                />
+                                {transactionStatus === 'incorrect' &&
+                                    <span style={{color: 'red'}}>
+                                    <FontAwesomeIcon icon={faCircleXmark} />&nbsp;
+                                       Can't be empty
+                                    </span>
+                                }         
                             </div>
                         </div>
                     </div>)
