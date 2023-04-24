@@ -87,7 +87,7 @@ export default function Payment () {
         orders.datetime = new Date().toISOString().slice(0, 19).replace('T', ' ');
         console.log(orders); 
         const orderList = [];
-        //send the order  //1234-5678-9123
+        //send the order  //1234-5678-9000
         orders.items.map(item => {
             const order = {...orders, items: item.id, count: item.count} 
             orderList.push(order);          
