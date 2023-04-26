@@ -2,57 +2,57 @@ export const ITEMS =
 [
     {
         id: 1,
-        name: 'Burger',
+        name: 'Onion',
         price: 5.50,
         counter: 0,
-        image: 'img/Burger_148.png',
-        description: 'Meat™'
+        image: 'img/onion.jpg',
+        description: 'The best onion'
     },
     {
         id: 2,
-        name: 'Piza',
+        name: 'Potato',
         price: 4.99,
         counter: 0,
-        image: 'img/Pizza_148.png',
+        image: 'img/potato.jpg',
         description: 'That’s amore'
     },
     {
         id: 3,
-        name: 'Hotdog',
+        name: 'Karrot',
         price: 3.99,
         counter: 0,
-        image: 'img/Hotdog_148.png',
+        image: 'img/karrot.jpg',
         description: '0% dog, 100% hot'
     },
     {
         id: 4,
-        name: 'Taco',
+        name: 'pepper',
         price: 4.99,
         counter: 0,
-        image: 'img/Tako_148.png',
+        image: 'img/pepper.jpg',
         description: 'Mucho más'
     },
     {
         id: 5,
-        name: 'Donut',
+        name: 'tomatto',
         price: 1.49,
         counter: 0,
-        image: 'img/Donut_148.png',
+        image: 'img/tomatto.jpg',
         description: 'Hole included'
     },
     {
         id: 6,
-        name: 'Popcorn',
+        name: 'duba',
         price: 1.99,
         counter: 0,
-        image: 'img/Popcorn_148.png',
+        image: 'img/duba.jpg',
         description: 'Lights, camera, corn'
     },
     {
         id: 7,
-        name: "Flan",
+        name: "gomen",
         price: 1.99,
-        image: "img/Flan_148.png",
+        image: "img/gomen.jpg",
         description: "The best"
     }
 ]

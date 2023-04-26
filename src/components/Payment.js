@@ -27,7 +27,7 @@ export default function Payment () {
             setMemberIdStatus('incorrect')
         }
         if(memberId.length === 14){
-            fetch(baseUrl + `/members/${memberId}`)
+            /* fetch(baseUrl + `/members/${memberId}`)
             .then(response => response.json())
             .then(response => {
                 if(response.length){
@@ -37,7 +37,9 @@ export default function Payment () {
                     setMemberIdStatus('incorrect')
                 }
                 })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err)) */
+            orders.memberId = memberId
+            setMemberIdStatus('correct')
         }
     }
     const handle_meberIdFocus = () => {
@@ -94,7 +96,7 @@ export default function Payment () {
         });
        
         const myOrderList = JSON.stringify(orderList);
-        fetch(baseUrl + '/orders', {
+        /* fetch(baseUrl + '/orders', {
             method: "POST",
             body: JSON.stringify({order: myOrderList}),
             headers:{
@@ -106,8 +108,8 @@ export default function Payment () {
             console.log(response.json())
             navigate('/checkout')
         })
-        .catch(err => console.log(err))
-    
+        .catch(err => console.log(err)) */
+        navigate('/checkout')
     }
 
     const handle_cancelBtn = () => {

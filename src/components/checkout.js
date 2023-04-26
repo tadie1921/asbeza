@@ -10,14 +10,14 @@ export default function Checkout() {
 
     const dispatch = useDispatch();
 
-    useEffect(()=>{
+    /* useEffect(()=>{
         dispatch(fetchItems());
-    },[]);
+    },[]); */
     
 
     const navigate = useNavigate();
     const handle_finish = () =>{
-        //dispatch(resetCounter());
+        dispatch(resetCounter());
         navigate('/home');
     }
 
@@ -45,7 +45,7 @@ export default function Checkout() {
                 </div>
             
             <div className="d-flex justify-content-center">
-                <img src="img/Burger_148.png"/>
+                <img src="img/balesuk.jpg"/>
             </div>
             <Footer component={'checkout'} btn_name="Finish" btn_func={handle_finish}/>  
         </div>

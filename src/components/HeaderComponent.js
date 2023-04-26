@@ -9,7 +9,7 @@ export default function Header(props) {
                 </h2>
                 <div className="offset-1 row">
                     <div className="col-3 col-md-5">
-                        <img height={40} width={40} src="img/Burger_148.png"/>    
+                        <img height={40} width={40} src="img/balesuk.jpg"/>    
                     </div>
                     <div className="col-8 col-md-5 mt-1">
                         <p style={{fontSize: 16}}> 
