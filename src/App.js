@@ -3,6 +3,7 @@ import Main from './components/Main';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import React, {useEffect} from 'react';
 
 const telegram = window.Telegram.WebApp;
 
