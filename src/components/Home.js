@@ -79,7 +79,7 @@ export default function Home() {
                 <div className="cafe-item-label">
                     <span className="cafe-item-title">{item.name}</span>
                     &nbsp;
-                    <span className="cafe-item-price">{' $' + item.price}</span>
+                    <span className="cafe-item-price">{item.price + ' ETB'}</span>
                 </div>
                 <div className={item.counter > 0 ? "cafe-item-buttons selected" : "cafe-item-buttons"}>
                     <button className="cafe-item-decr-button button-item ripple-handler"

@@ -50,7 +50,7 @@ export default function Order() {
                         <span>{item.counter}</span>x</span></div>
 					<div className="cafe-order-item-description">{item.description}</div>
 				</div>
-				<div className="cafe-order-item-price">{'$' + item.price}</div>
+				<div className="cafe-order-item-price">{item.counter * item.price + ' ETB'}</div>
 			</div>
         )
         }  
@@ -64,7 +64,7 @@ export default function Order() {
                         <div className="cafe-order-header-wrap">
                             <h2 className="cafe-order-header">Your Order</h2>
                             <span className="cafe-order-edit"
-                                onClick={() =>handle_editBtn()}  >Edit
+                                onClick={() =>handle_editBtn()}  >Back
                             </span>
                         </div>
                         <div className="cafe-order-items">

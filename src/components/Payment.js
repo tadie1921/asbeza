@@ -154,7 +154,7 @@ export default function Payment () {
                     <p style={{fontSize: 16}}>
                         Your Total fee  &nbsp;
                         <span style={{color: 'blue', textDecoration: 'underline'}}>
-                            {Number(location.state.orders.totalPrice).toFixed(2)}
+                            {Number(location.state.orders.totalPrice).toFixed(2) + ' ETB'}
                         </span>
                     </p>
                 </div> 
