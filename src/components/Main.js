@@ -8,12 +8,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Checkout from "./checkout";
 import AdminApp from "../adminComponent/AdminApp";
 
-
-
 export default function Main() {
 
     const dispatch = useDispatch();
     const itemStatus = useSelector(state => state.items.status);
+    
     
     
    /*  useEffect(()=>{

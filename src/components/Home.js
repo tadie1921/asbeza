@@ -8,6 +8,8 @@ import Footer from "./FooterComponent";
 
 var orderCount = 0;
 
+const telegram = window.Telegram.WebApp;
+
 export default function Home() {
     
     const [itemsList, setItemsList] = useState([]);
@@ -16,6 +18,11 @@ export default function Home() {
     //redux state 
     const items = useSelector(state => state.items);
     const errMess = useSelector(state => state.items.error);
+
+    //telegram
+    useEffect(()=>{
+        telegram.ready();
+    });
 
     useEffect(()=>{
         if(items.status === 'succeeded'){
