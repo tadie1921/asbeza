@@ -4,7 +4,15 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
+const telegram = window.Telegram.WebApp;
+
 function App() {
+
+  //telegram
+  useEffect(()=>{
+    telegram.ready();
+  });
+
   return (
     <Provider store={store}>
       <BrowserRouter>
