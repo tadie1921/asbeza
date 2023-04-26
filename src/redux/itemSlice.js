@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const baseUrl = "http://localhost:3000";
-
+const {ITEMS} = require('../sampleData/items');
+console.log(ITEMS)
 
 const initialState = {
-    items: [],  // []
-    status: 'idle', // 'idle'
+    items: ITEMS,  //  []
+    status: 'succeeded', // 'idle'
     error: null
 }
 

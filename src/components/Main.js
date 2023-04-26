@@ -8,17 +8,23 @@ import { useDispatch, useSelector } from "react-redux";
 import Checkout from "./checkout";
 import AdminApp from "../adminComponent/AdminApp";
 
+const telegram = window.Telegram.WebApp;
+
 export default function Main() {
 
     const dispatch = useDispatch();
     const itemStatus = useSelector(state => state.items.status);
     
-    
+    //telegram
     useEffect(()=>{
+      telegram.ready();
+    });
+    
+   /*  useEffect(()=>{
       if(itemStatus === 'idle') {
         dispatch(fetchItems())
       }
-    },[itemStatus])
+    },[itemStatus]) */
   
 
     return(
