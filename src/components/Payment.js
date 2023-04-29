@@ -111,6 +111,8 @@ export default function Payment (props) {
         .catch(err => console.log(err)) */
        // navigate('/checkout')
       // props.telegram.sendData("Thank you for chosing birrama")
+      const dataTotelegram = `Thank you for choosing birram`;
+      props.telegram.sendData(dataTotelegram);
        props.telegram.close();
     }
 
