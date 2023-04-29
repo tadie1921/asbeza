@@ -63,9 +63,12 @@ export default function Order() {
             <div className="cafe-page cafe-order-overview">
                     <div className="cafe-block ">
                         <div className="cafe-order-header-wrap mt-5">
-                            <h2 className="cafe-order-header">Your Order</h2>
+                            <h2 className="cafe-order-header"
+                                style={{fontSize: '18px'}}
+                            >Your Order</h2>
                             <span className="cafe-order-edit"
-                                onClick={() =>handle_editBtn()}  >Back
+                                onClick={() =>handle_editBtn()}  
+                                style={{fontSize: '20px'}}>Back
                             </span>
                         </div>
                         <div className="cafe-order-items">

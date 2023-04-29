@@ -17,7 +17,9 @@ export default function Home(props) {
     const items = useSelector(state => state.items);
     const errMess = useSelector(state => state.items.error);
 
-    
+    if(orderCount > 0) {
+        props.telegram.expand();
+    }
 
     useEffect(()=>{
         if(items.status === 'succeeded'){
@@ -37,7 +39,6 @@ export default function Home(props) {
     // increment and decrement button
     const dispatch = useDispatch();
     const handle_incBtn = (id) => {
-        props.telegram.expand(); 
         itemsList.map(e =>{
             if(e.id === id) {
                 dispatch(counterChanged({id: e.id, action: "inc"}))
@@ -114,7 +115,7 @@ export default function Home(props) {
                     style={{marginTop: '100px'}}> 
                     {Itmes}                             
                 </div>
-                {orderCount > 0 && (        
+                {orderCount > 0 && ( 
                     <Footer  component={'home'} btn_func={handle_viewOrder} btn_name={'Next'}/>
                 )}    
             </div>

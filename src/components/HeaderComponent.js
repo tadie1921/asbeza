@@ -12,7 +12,7 @@ export default function Header(props) {
                 )}                
                 <div className="offset-1 row">
                     <div className="col-3 col-md-5">
-                        <img height={55} width={55} src="img/balesuk.jpg"/>    
+                        <img height={65} width={65} src="img/balesuk.jpg"/>    
                     </div>
                     <div className="col-8 col-md-5 mt-1">
                         <p style={{fontSize: 16}}> 

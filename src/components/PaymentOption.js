@@ -9,7 +9,7 @@ export default function PaymentOption() {
                     <img height={40} width={40} src={item.icon}/>    
                 </div>
                 <div className="col-8 ">
-                    <p style={{fontSize: 14}}> 
+                    <p style={{fontSize: 18}}> 
                         <span>Our account at &nbsp; 
                             <span style={{color: color, textDecoration: 'underline'}}>
                                 {item.name} </span> is
