@@ -110,7 +110,7 @@ export default function Payment (props) {
         })
         .catch(err => console.log(err)) */
        // navigate('/checkout')
-       props.sendData("Thank you for chosing birrama")
+      // props.telegram.sendData("Thank you for chosing birrama")
        props.telegram.close();
     }
 

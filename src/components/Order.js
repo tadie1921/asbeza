@@ -34,6 +34,7 @@ export default function Order() {
            //add to order 
            const order = {id: item.id, name: item.name, count: item.counter};
            orders.items.push(order) 
+
         return(
             <div key={item.id} className="cafe-order-item selected">
 				<div className="cafe-order-item-photo">
@@ -47,10 +48,10 @@ export default function Order() {
 				</div>
 				<div className="cafe-order-item-label">
 					<div className="cafe-order-item-title">{item.name} <span className="cafe-order-item-counter">
-                        <span>{item.counter}</span>x</span></div>
+                        <span>{item.counter}</span>x</span>{item.price}</div>
 					<div className="cafe-order-item-description">{item.description}</div>
 				</div>
-				<div className="cafe-order-item-price">{item.counter * item.price + ' ETB'}</div>
+				<div className="cafe-order-item-price">{price.toFixed(2) + ' ETB'}</div>
 			</div>
         )
         }  
