@@ -8,7 +8,7 @@ import Footer from "./FooterComponent";
 
 var orderCount = 0;
 
-export default function Home() {
+export default function Home(props) {
     
     const [itemsList, setItemsList] = useState([]);
     const [updateCounter, setUpdateCounter] = useState(false);
@@ -37,6 +37,7 @@ export default function Home() {
     // increment and decrement button
     const dispatch = useDispatch();
     const handle_incBtn = (id) => {
+        props.telegram.expand(); 
         itemsList.map(e =>{
             if(e.id === id) {
                 dispatch(counterChanged({id: e.id, action: "inc"}))

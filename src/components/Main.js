@@ -30,7 +30,7 @@ export default function Main() {
 
     return(
       <Routes>
-        <Route path='/home' element={<Home />}/>
+        <Route path='/home' element={<Home telegram={telegram}/>}/>
         <Route path='/order' element={<Order />} />
         <Route path='/payment' element={<Payment telegram={telegram}/>} />
         <Route path='/checkout' element={<Checkout />} />

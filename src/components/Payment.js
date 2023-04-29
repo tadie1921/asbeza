@@ -112,10 +112,27 @@ export default function Payment (props) {
        // navigate('/checkout')
       // props.telegram.sendData("Thank you for chosing birrama")
       const message = {
-         message: 'hello'
-      }
-      props.telegram.sendData(JSON.stringify(message));
-       props.telegram.close();
+        message_id: 12345,
+        from: {
+          id: 123,
+          is_bot: false,
+          first_name: "Birrama",
+          last_name: " ",
+          username: " "
+        },
+        date: 1617275021,
+        chat: {
+          id: 123,
+          type: "private",
+          first_name: "Birrama",
+          last_name: " ",
+          username: " "
+        },
+        text: "Thank yu for choosing "
+      };
+      
+      props.telegram.sendData(message);
+      //props.telegram.close();
     }
 
     const handle_cancelBtn = () => {
