@@ -52,6 +52,7 @@ export const ITEMS =
         id: 7,
         name: "gomen",
         price: 1.99,
+        counter: 0,
         image: "img/gomen.jpg",
         description: "The best"
     }

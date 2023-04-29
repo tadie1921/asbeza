@@ -48,6 +48,7 @@ body.order-mode {
 
 .cafe-page {
   transition: filter var(--animation);
+  
 }
 body.closed .cafe-page {
   filter: grayscale(1) opacity(0.7);
@@ -321,6 +322,7 @@ button,
   background-color: var(--bg-color);
   transition: opacity var(--page-animation);
   opacity: 1;
+  margin-top: 70px;
 }
 body.order-mode .cafe-order-overview {
   opacity: 1;
@@ -329,6 +331,7 @@ body.order-mode .cafe-order-overview {
   padding: 21px 20px 14px;
   display: flex;
   align-items: center;
+  background-color: #fff;
 }
 .cafe-order-header {
   font-size: 14px;
@@ -337,6 +340,7 @@ body.order-mode .cafe-order-overview {
   flex-grow: 1;
   padding: 0;
   margin: 0;
+  
 }
 .cafe-order-edit {
   font-size: 15px;

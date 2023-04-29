@@ -8,8 +8,6 @@ import Footer from "./FooterComponent";
 
 var orderCount = 0;
 
-const telegram = window.Telegram.WebApp;
-
 export default function Home() {
     
     const [itemsList, setItemsList] = useState([]);
@@ -19,10 +17,7 @@ export default function Home() {
     const items = useSelector(state => state.items);
     const errMess = useSelector(state => state.items.error);
 
-    //telegram
-    useEffect(()=>{
-        telegram.ready();
-    });
+    
 
     useEffect(()=>{
         if(items.status === 'succeeded'){
@@ -113,12 +108,13 @@ export default function Home() {
        
         return(
             <div className="row">
-                <Headers component={'Home'} title={'Orders'}/>
-                <div className="cafe-page cafe-items col-12 mb-5"> 
+                    <Headers component={'Home'} title={'Orders'}/>     
+                <div className="cafe-page cafe-items col-12 mb-5"
+                    style={{marginTop: '100px'}}> 
                     {Itmes}                             
                 </div>
-                {orderCount > 0 && (
-                    <Footer component={'home'} btn_func={handle_viewOrder} btn_name={'Next'}/>
+                {orderCount > 0 && (        
+                    <Footer  component={'home'} btn_func={handle_viewOrder} btn_name={'Next'}/>
                 )}    
             </div>
                     

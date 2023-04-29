@@ -8,7 +8,7 @@ import {faCheckCircle, faCircleXmark} from '@fortawesome/free-solid-svg-icons';
 
 const baseUrl = "http://localhost:3000";
 
-export default function Payment () {
+export default function Payment (props) {
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -23,9 +23,9 @@ export default function Payment () {
     const handle_memberIdField = () => {
         const memberId = document.querySelector('#memberId').value;
 
-        if(memberId.length == 13 || memberId.length == 0){
+        /* if(memberId.length == 13 || memberId.length == 0){
             setMemberIdStatus('incorrect')
-        }
+        } */
         if(memberId.length === 14){
             /* fetch(baseUrl + `/members/${memberId}`)
             .then(response => response.json())
@@ -43,9 +43,9 @@ export default function Payment () {
         }
     }
     const handle_meberIdFocus = () => {
-        if(memberIdStatus !== 'correct'){
+        /* if(memberIdStatus !== 'correct'){
             setMemberIdStatus('incorrect')
-        }
+        } */
     }
 
     const handle_paymentOption = () => {
@@ -109,19 +109,24 @@ export default function Payment () {
             navigate('/checkout')
         })
         .catch(err => console.log(err)) */
-        navigate('/checkout')
+       // navigate('/checkout')
+       props.sendData("Thank you for chosing birrama")
+       props.telegram.close();
     }
 
     const handle_cancelBtn = () => {
         navigate('/order');
+        console.log('hellow')
     }
+
 
     return(
         <>
         <div className="row">
             <Header component={'payment'} title={'Checkout & Payment'} 
                         order_num={orders.orderNum}/>
-            <div className="cafe-items row mt-3">
+            <div className="cafe-items row" 
+                style={{marginTop: '150px'}}>
                 <div className="col-6">
                     <p style={{fontSize: 13, lineHeight:1}}>
                         Please enter your 12 Digit
@@ -220,8 +225,9 @@ export default function Payment () {
 
             </div>
        </div>
-       <Footer  component='payment' btn_name='Done' btn_func={handle_done} 
-                    cancel_func={handle_cancelBtn}/>  
+                <Footer  component='payment' btn_name='Done' btn_func={handle_done} 
+                    cancel_func={handle_cancelBtn}/> 
+       
    </>
     );
     /* 

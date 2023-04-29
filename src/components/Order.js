@@ -60,8 +60,8 @@ export default function Order() {
        <div className="row">
             <Headers component={'Order'} title={'Order Summery'}/>
             <div className="cafe-page cafe-order-overview">
-                    <div className="cafe-block">
-                        <div className="cafe-order-header-wrap">
+                    <div className="cafe-block ">
+                        <div className="cafe-order-header-wrap mt-5">
                             <h2 className="cafe-order-header">Your Order</h2>
                             <span className="cafe-order-edit"
                                 onClick={() =>handle_editBtn()}  >Back
@@ -79,13 +79,19 @@ export default function Order() {
                         </div>
                     </div>
             </div>
-            <div className="offset-1 my-3">
-                <p style={{fontSize: 18}}>Total Fee &nbsp;
-                <span style={{color: '#0891ec', textDecoration: 'underline'}}>
-                    {totalPrice.toFixed(2)}
-                    </span></p>
+            <div className="fixed-bottom col-12 row mx-0 my-1" 
+                    style={{backgroundColor: "white"}}>
+                <div className="offset-1 col-6 mt-3">
+                    <p style={{fontSize: 18}}>Total Fee &nbsp;
+                    <span style={{color: '#0891ec', textDecoration: 'underline'}}>
+                        {totalPrice.toFixed(2)}
+                        </span></p>
+                </div>
+                <div className="col-6">
+                    <Footer  component={'order'} btn_func={handle_payBtn} btn_name='Next'/> 
+                </div>
             </div>
-            <Footer component={'order'} btn_func={handle_payBtn} btn_name='Next'/>  
+             
         </div>
     );
 }

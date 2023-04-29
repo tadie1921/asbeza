@@ -8,11 +8,17 @@ import { useDispatch, useSelector } from "react-redux";
 import Checkout from "./checkout";
 import AdminApp from "../adminComponent/AdminApp";
 
+const telegram = window.Telegram.WebApp;
+
 export default function Main() {
 
     const dispatch = useDispatch();
     const itemStatus = useSelector(state => state.items.status);
     
+    //telegram
+    useEffect(()=>{
+        telegram.ready();
+    });
     
     
    /*  useEffect(()=>{
@@ -26,7 +32,7 @@ export default function Main() {
       <Routes>
         <Route path='/home' element={<Home />}/>
         <Route path='/order' element={<Order />} />
-        <Route path='/payment' element={<Payment />} />
+        <Route path='/payment' element={<Payment telegram={telegram}/>} />
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/admin/*' element={<AdminApp />}/>
         <Route path="*" element={
