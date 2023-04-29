@@ -117,22 +117,22 @@ export default function Payment (props) {
           id: 123,
           is_bot: false,
           first_name: "Birrama",
-          last_name: " ",
-          username: " "
+          last_name: "Order",
+          username: "Birrama Order"
         },
         date: 1617275021,
         chat: {
           id: 123,
-          type: "private",
+          type: "message",
           first_name: "Birrama",
-          last_name: " ",
-          username: " "
+          last_name: "Order",
+          username: "Birrama Order"
         },
         text: "Thank yu for choosing "
       };
       
-      props.telegram.sendData(message);
-      //props.telegram.close();
+      props.telegram.sendData(JSON.stringify(message));
+       props.telegram.close();
     }
 
     const handle_cancelBtn = () => {
