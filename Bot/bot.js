@@ -9,9 +9,14 @@ bot.start((ctx) => ctx.reply('Welcome',{
     reply_markup:{inline_keyboard:[[{text: "Click Here", web_app: {url: web_link}}]]},
 }));
 
-bot.hears('message', (ctx) => {
-    //const message = ctx.message.text;
-    ctx.reply('I received your message from the WebApp!');
+bot.on('message', (ctx) => {
+    const message = ctx.message;
+    console.log(typeof message)
+    console.log(message.web_app_data.data);
+    const data = JSON.parse(message.web_app_data.data);
+    console.log(data)
+    console.log(data.text);
+    ctx.reply(data.text);
 });
 
 bot.launch();

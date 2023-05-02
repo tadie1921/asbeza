@@ -112,27 +112,7 @@ export default function Payment (props) {
         .catch(err => console.log(err)) */
        // navigate('/checkout')
       // props.telegram.sendData("Thank you for chosing birrama")
-      const now = new Date();
-      const message = {
-        message_id: 123456,
-        date: Date.parse(now) / 1000,
-        chat: {
-            id: 287406639,
-            type: "private"
-        },
-        text: "Hello, world!"
-     }
-    const message1 = {
-        chat_id: 287406639,
-        text: "Thank yu for choosing "
-      };
-      console.log("the messsage")
-      console.log(JSON.stringify(message))
-      props.telegram.sendData(JSON.stringify(message));
-
-      //props.telegram.close();
-      //prepare order for message
-      /* const message_order = {
+      const message_order = {
         orderNumber: orders.orderNum,
         datetime: orders.datetime,
         paymentOption: orders.paymentOption,
@@ -148,8 +128,26 @@ export default function Payment (props) {
     message_order.items.push(myMessage_orderList);
     console.log("the message");
     console.log(JSON.stringify(message_order));
-    
 
+        ///send function
+      const now = new Date();
+      const message = {
+        message_id: Math.floor(Math.random() * 100000),
+        date: Date.parse(now) / 1000,
+        chat: {
+            id: 287406639,
+            type: "private"
+        },
+        text: JSON.stringify(message_order)
+     }
+
+      props.telegram.sendData(JSON.stringify(message));
+
+      //props.telegram.close();
+      //prepare order for message
+       
+    
+/*
       const botToken = '5685518421:AAHICQR0O4Wjf3JkuLHlJeIcJyGsty8UNkc'; // Replace with your bot token
       const chatId = '287406639'; // Replace with your chat ID
       const message = JSON.stringify(message_order); // Replace with your message
