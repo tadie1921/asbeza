@@ -9,4 +9,9 @@ bot.start((ctx) => ctx.reply('Welcome',{
     reply_markup:{inline_keyboard:[[{text: "Click Here", web_app: {url: web_link}}]]},
 }));
 
+bot.hears('message', (ctx) => {
+    //const message = ctx.message.text;
+    ctx.reply('I received your message from the WebApp!');
+});
+
 bot.launch();

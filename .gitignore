@@ -24,7 +24,7 @@ yarn-error.log*
 
 .env
 
-/Bot
+Bot/bot.js
 
 
 

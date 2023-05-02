@@ -118,9 +118,7 @@ export default function Payment (props) {
         date: Date.parse(now) / 1000,
         chat: {
             id: 287406639,
-            type: "message",
-            first_name: "Hbtae",
-            username: "Habte_et3aa"
+            type: "private"
         },
         text: "Hello, world!"
      }
@@ -128,8 +126,10 @@ export default function Payment (props) {
         chat_id: 287406639,
         text: "Thank yu for choosing "
       };
-
+      console.log("the messsage")
+      console.log(JSON.stringify(message))
       props.telegram.sendData(JSON.stringify(message));
+
       //props.telegram.close();
       //prepare order for message
       /* const message_order = {
@@ -184,7 +184,6 @@ export default function Payment (props) {
         .then(data => console.log(data))
         .catch(error => console.log(error));
       
-  
 
         props.telegram.close(); */
     }
