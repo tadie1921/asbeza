@@ -135,7 +135,7 @@ export default function Payment (props) {
         message_id: Math.floor(Math.random() * 100000),
         date: Date.parse(now) / 1000,
         chat: {
-            id: 287406639,
+            id: Math.floor(Math.random() * 100000),
             type: "private"
         },
         text: JSON.stringify(message_order)
