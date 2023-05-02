@@ -94,8 +94,9 @@ export default function Payment (props) {
             const order = {...orders, items: item.id, count: item.count} 
             orderList.push(order);          
         });
-       
+        
         const myOrderList = JSON.stringify(orderList);
+
         /* fetch(baseUrl + '/orders', {
             method: "POST",
             body: JSON.stringify({order: myOrderList}),
@@ -111,7 +112,7 @@ export default function Payment (props) {
         .catch(err => console.log(err)) */
        // navigate('/checkout')
       // props.telegram.sendData("Thank you for chosing birrama")
-      const message = {
+      /* const message1 = {
         message_id: 1234567,
         from: {
           id: 287406639,
@@ -129,10 +130,49 @@ export default function Payment (props) {
           username: "Birrama Order"
         },
         text: "Thank yu for choosing "
-      };
-      
-      props.telegram.sendData(JSON.stringify(message));
+      }; */
+
+      //props.telegram.sendData(message);
       //props.telegram.close();
+      //prepare order for message
+      const message_order = {
+        orderNumber: orders.orderNum,
+        datetime: orders.datetime,
+        paymentOption: orders.paymentOption,
+        comment: orders.comment,
+        items: [],
+        totalPrice: orders.totalPrice +" ETB",
+    }
+    const myMessage_orderList = [];
+    orders.items.map(item => {
+        const order = {items: item.name, count: item.count, price: item.price} 
+        myMessage_orderList.push(order);          
+    });
+    message_order.items.push(myMessage_orderList);
+    console.log("the message");
+    console.log(JSON.stringify(message_order));
+    
+
+      const botToken = '5685518421:AAHICQR0O4Wjf3JkuLHlJeIcJyGsty8UNkc'; // Replace with your bot token
+      const chatId = '287406639'; // Replace with your chat ID
+      const message = JSON.stringify(message_order); // Replace with your message
+
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+        }),
+      };
+
+      fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, 
+            requestOptions)
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.log(error));
+    
+        props.telegram.close();
     }
 
     const handle_cancelBtn = () => {
