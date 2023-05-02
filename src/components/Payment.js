@@ -159,7 +159,12 @@ export default function Payment (props) {
 
       const requestOptions = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+            'Content-Type': 'application/json', 
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
+            'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept'
+    },
         body: JSON.stringify({
           chat_id: chatId,
           text: message,
