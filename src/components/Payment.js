@@ -112,30 +112,15 @@ export default function Payment (props) {
         .catch(err => console.log(err)) */
        // navigate('/checkout')
       // props.telegram.sendData("Thank you for chosing birrama")
-      /* const message1 = {
-        message_id: 1234567,
-        from: {
-          id: 287406639,
-          is_bot: false,
-          first_name: "Birrama",
-          last_name: "Order",
-          username: "Birrama Order"
-        },
-        date: Math.floor(new Date().getTime() / 1000),
-        chat: {
-          id: 287406639,
-          type: "message",
-          first_name: "Birrama",
-          last_name: "Order",
-          username: "Birrama Order"
-        },
+      const message1 = {
+        chat_id: 287406639,
         text: "Thank yu for choosing "
-      }; */
+      };
 
-      //props.telegram.sendData(message);
+      props.telegram.sendData(JSON.stringify(message1));
       //props.telegram.close();
       //prepare order for message
-      const message_order = {
+      /* const message_order = {
         orderNumber: orders.orderNum,
         datetime: orders.datetime,
         paymentOption: orders.paymentOption,
@@ -155,8 +140,17 @@ export default function Payment (props) {
 
       const botToken = '5685518421:AAHICQR0O4Wjf3JkuLHlJeIcJyGsty8UNkc'; // Replace with your bot token
       const chatId = '287406639'; // Replace with your chat ID
-      const message = "Hello bot!"; // Replace with your message
+      const message = JSON.stringify(message_order); // Replace with your message
 
+      async function getChatId() {
+        const response = await fetch(`https://api.telegram.org/bot${botToken}/getUpdates`);
+        const json = await response.json();
+        console.log(json);
+        //const chatId = json.result[0].message.chat.id; // Assumes that the latest message is at index 0
+        //console.log(chatId);
+        //return chatId;
+      }
+      
       const requestOptions = {
         method: 'POST',
         headers: { 
@@ -165,19 +159,22 @@ export default function Payment (props) {
             'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
             'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept'
     },
+
         body: JSON.stringify({
           chat_id: chatId,
           text: message,
         }),
       };
 
-      fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, 
+       fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, 
             requestOptions)
         .then(response => response.json())
         .then(data => console.log(data))
         .catch(error => console.log(error));
-    
-        props.telegram.close();
+      
+  
+
+        props.telegram.close(); */
     }
 
     const handle_cancelBtn = () => {

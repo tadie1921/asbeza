@@ -17,7 +17,7 @@ export default function Main() {
     
     //telegram
     useEffect(()=>{
-        telegram.ready();
+      telegram.ready();
     });
     
     
