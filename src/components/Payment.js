@@ -155,7 +155,7 @@ export default function Payment (props) {
 
       const botToken = '5685518421:AAHICQR0O4Wjf3JkuLHlJeIcJyGsty8UNkc'; // Replace with your bot token
       const chatId = '287406639'; // Replace with your chat ID
-      const message = JSON.stringify(message_order); // Replace with your message
+      const message = "Hello bot!"; // Replace with your message
 
       const requestOptions = {
         method: 'POST',
