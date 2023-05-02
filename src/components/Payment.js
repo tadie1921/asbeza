@@ -112,12 +112,24 @@ export default function Payment (props) {
         .catch(err => console.log(err)) */
        // navigate('/checkout')
       // props.telegram.sendData("Thank you for chosing birrama")
-      const message1 = {
+      const now = new Date();
+      const message = {
+        message_id: 123456,
+        date: Date.parse(now) / 1000,
+        chat: {
+            id: 287406639,
+            type: "message",
+            first_name: "Hbtae",
+            username: "Habte_et3aa"
+        },
+        text: "Hello, world!"
+     }
+    const message1 = {
         chat_id: 287406639,
         text: "Thank yu for choosing "
       };
 
-      props.telegram.sendData(JSON.stringify(message1));
+      props.telegram.sendData(JSON.stringify(message));
       //props.telegram.close();
       //prepare order for message
       /* const message_order = {
