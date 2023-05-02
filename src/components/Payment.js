@@ -112,17 +112,17 @@ export default function Payment (props) {
        // navigate('/checkout')
       // props.telegram.sendData("Thank you for chosing birrama")
       const message = {
-        message_id: 12345,
+        message_id: 1234567,
         from: {
-          id: 123,
+          id: 287406639,
           is_bot: false,
           first_name: "Birrama",
           last_name: "Order",
           username: "Birrama Order"
         },
-        date: 1617275021,
+        date: Math.floor(new Date().getTime() / 1000),
         chat: {
-          id: 123,
+          id: 287406639,
           type: "message",
           first_name: "Birrama",
           last_name: "Order",
@@ -132,7 +132,7 @@ export default function Payment (props) {
       };
       
       props.telegram.sendData(JSON.stringify(message));
-       props.telegram.close();
+      //props.telegram.close();
     }
 
     const handle_cancelBtn = () => {
@@ -143,7 +143,7 @@ export default function Payment (props) {
 
     return(
         <>
-        <div className="row">
+        <div>
             <Header component={'payment'} title={'Checkout & Payment'} 
                         order_num={orders.orderNum}/>
             <div className="cafe-items row" 
@@ -257,13 +257,10 @@ export default function Payment (props) {
 
             </div>
        </div>
-                <Footer  component='payment' btn_name='Done' btn_func={handle_done} 
-                    cancel_func={handle_cancelBtn}/> 
+        <Footer  component='payment' btn_name='Done' btn_func={handle_done} 
+            cancel_func={handle_cancelBtn}/> 
        
    </>
     );
-    /* 
-    
-     
-    */
+
 }
